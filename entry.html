@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar - Consultas Escolas Divinópolis</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .logo {
+        max-width: 50%;
+        height: auto;
+        margin-top: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .title::before {
+        content: "";
+        display: block;
+        margin: 10px auto;
+        width: 50px;
+        height: 1px;
+        background-color: #000;
+      }
+
+      button {
+        background-color: #e67e22; /* Laranja */
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #d35400; /* Tom mais escuro de laranja */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">Consultas Escolas Divinópolis</div>
+      <img class="logo" src="img/divinopolis.png" alt="Logo da Empresa" />
+      <h1>Bem-vindo!</h1>
+      <button onclick="redirecionar()">Entrar</button>
+    </div>
+
+    <script>
+      function redirecionar() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

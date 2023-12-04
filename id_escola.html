@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escolas Div</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto mt-8 p-4">
+      <h1 class="text-2xl font-bold mb-4">IDs Únicos das Escolas</h1>
+      <div id="ids-container" class="flex flex-wrap"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("dataset.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const uniqueIds = obterIdsUnicos(data);
+            exibirIds(uniqueIds);
+          })
+          .catch((error) => console.error("Erro ao carregar dados:", error));
+
+        function obterIdsUnicos(data) {
+          const idsSet = new Set();
+          data.forEach((escola) => {
+            idsSet.add(escola.id_escola);
+          });
+          return Array.from(idsSet);
+        }
+
+        function exibirIds(ids) {
+          const idsContainer = document.getElementById("ids-container");
+
+          ids.forEach((id) => {
+            const idElement = document.createElement("div");
+            idElement.classList.add(
+              "bg-white",
+              "rounded",
+              "p-2",
+              "mr-2",
+              "mb-2",
+              "shadow-md"
+            );
+            idElement.innerText = id;
+            idsContainer.appendChild(idElement);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
