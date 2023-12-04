@@ -3,391 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Escolas Div</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <title>Entrar - Consultas Escolas Divinópolis</title>
     <style>
-      .custom-btn {
-        background-color: #e67e22;
-        color: #fff;
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .custom-btn:hover {
-        background-color: #d35400;
-      }
-      .navbar {
-        background-color: #e67e22;
-        color: #fff;
-        padding: 10px 20px;
+      body {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-      }
-
-      .navbar img {
-        max-height: 40px;
-      }
-
-      .navbar h1 {
+        justify-content: center;
+        height: 100vh;
         margin: 0;
-        font-size: 1.5rem;
+        background-color: #f0f0f0;
       }
 
-      .navbar-btn {
-        background-color: #e67e22;
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .logo {
+        max-width: 50%;
+        height: auto;
+        margin-top: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .title {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      .title::before {
+        content: "";
+        display: block;
+        margin: 10px auto;
+        width: 50px;
+        height: 1px;
+        background-color: #000;
+      }
+
+      button {
+        background-color: #e67e22; /* Laranja */
         color: #fff;
         padding: 10px 20px;
         font-size: 16px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        margin-top: 20px;
       }
 
-      .navbar-btn:hover {
-        background-color: #d35400;
-      }
-      .destaque {
-        background-color: #4caf50; /* Cor verde */
-        color: #fff; /* Texto branco */
-      }
-      .destaque-menor {
-        color: #e74c3c; /* Vermelho */
-        font-weight: bold;
+      button:hover {
+        background-color: #d35400; /* Tom mais escuro de laranja */
       }
     </style>
   </head>
-  <body class="bg-gray-100">
-    <div class="navbar">
-      <div class="flex items-center">
-        <img src="img/divinopolis.png" alt="Logo Divinópolis" />
-        <h1 class="ml-2">Gerenciamento de escolas Divinópolis/MG</h1>
-      </div>
-      <div class="flex items-center">
-        <button
-          class="navbar-btn mr-2"
-          onclick="window.location.href='https://www.divinopolis.mg.gov.br/'"
-        >
-          Ajuda
-        </button>
-        <button
-          <button
-          class="navbar-btn"
-          onclick="window.location.href='id_escola.html'"
-        >
-          ID Escolares
-        </button>
-      </div>
+  <body>
+    <div class="container">
+      <div class="title">Consultas Escolas Divinópolis</div>
+      <img class="logo" src="img/divinopolis.png" alt="Logo da Empresa" />
+      <h1>Bem-vindo!</h1>
+      <button onclick="redirecionar()">Entrar</button>
     </div>
-    <div class="container mx-auto mt-8 p-4">
-      <div class="flex flex-wrap items-center mb-4">
-        <label for="uf-select" class="block text-lg mb-2"
-          >Selecione a UF:</label
-        >
-        <select
-          id="uf-select"
-          class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-        >
-          <option value="MG" selected>MG</option>
-        </select>
-
-        <label for="municipio-select" class="block text-lg mt-4 mb-2 ml-2"
-          >Selecione o Município:</label
-        >
-        <select
-          id="municipio-select"
-          class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-        >
-          <option value="3122306" selected>Divinópolis</option>
-        </select>
-
-        <label for="id-escola-input" class="block text-lg mt-4 mb-2 ml-2">
-          Insira o Código da Escola:
-        </label>
-        <input
-          type="text"
-          id="id-escola-input"
-          class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-        />
-        <label for="ano-select" class="block text-lg mt-4 mb-2 ml-2"
-          >Selecione o Ano:</label
-        >
-        <select
-          id="ano-select"
-          class="p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500 ml-2"
-        >
-          <option value="">Todos</option>
-          <!-- Adicione opções dinamicamente com JavaScript -->
-        </select>
-      </div>
-    </div>
-
-    <div class="text-center mb-4">
-      <button
-        id="buscar-btn"
-        class="custom-btn p-2 hover:bg-orange-900 focus:outline-none focus:shadow-outline-orange"
-      >
-        Buscar
-      </button>
-    </div>
-
-    <div id="app" class="container mx-auto mt-4"></div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const ufSelect = document.getElementById("uf-select");
-        const municipioSelect = document.getElementById("municipio-select");
-        const idEscolaInput = document.getElementById("id-escola-input");
-        const anoSelect = document.getElementById("ano-select");
-
-        // Mapeamento de ID para nome da escola
-        const idToNomeEscola = {
-          31032999: "EE MARTIN CYPRIEN",
-          31033006: "EE ANTONIO GONCALVES DE MATOS",
-          31033014: "EE ARMANDO NOGUEIRA SOARES",
-          31033022: "EE ANTONIO OLIMPIO DE MORAIS",
-          31033031: "EE SANTO TOMAZ DE AQUINO",
-          31033057: "EE ROSA VAZ DE ARAUJO",
-          31033154: "EE DONA ANTONIA VALADARES",
-          31033162: "EE DONA DIVA DE OLIVEIRA",
-          31033171: "EE ENGENHEIRO PEDRO MAGALHAES",
-          31033189: "EE HALIM SOUKI",
-          31033197: "EE HENRIQUE GALVAO",
-          31033201: "EE JOAQUIM NABUCO",
-          31033219: "EE JOVELINO RABELO",
-          31033227: "EE LAURO EPIFANIO",
-          31033235: "EE LUIZ DE MELO VIANA SOBRINHO",
-          31033251: "EE MIGUEL COUTO",
-          31033260: "EE MONSENHOR DOMINGOS",
-          31033278: "EE NOSSA SENHORA DO SAGRADO CORACAO",
-          31033286: "EE PADRE MATIAS LOBATO",
-          31033294: "EE PATRONATO BOM PASTOR",
-          31033316: "EE SAO FRANCISCO DE ASSIS",
-          31033324: "EE SAO VICENTE",
-          31033332: "EE SAO FRANCISCO DE PAULA",
-          31033341: "EE PROFESSOR CHICO DIAS",
-          31033359: "EE ANTONIO DA COSTA PEREIRA",
-          31033375: "EE MANOEL CORREA FILHO",
-          31033383: "EE VICENTE MATEUS",
-          31033391: "EE DO BAIRRO BELO VALE",
-          31033405: "EE ILIDIO DA COSTA PEREIRA",
-          31033421: "EE ANTONIO BELARMINO GOMES",
-          31339199: "EE VIDA NOVA",
-          31364592: "COLEGIO TIRADENTES PMMG - UNIDADE DIVINOPOLIS",
-          31220051: "EM PROFESSOR ODILON SANTIAGO",
-          31037541: "EM OTAVIO OLIMPIO DE OLIVEIRA",
-          31277631: "EM PROFA VENEZA G OLIVEIRA",
-          31223913: "EM MARIA FONSECA PECANHA",
-          31320374: "EM PROFA MARIA LOURDES TEIXEIRA",
-          31212733: "EM PE GUARITA",
-          31227099: "EM ADOLFO MACHADO",
-          31223921: "EM PROF BAHIA",
-          31223930: "CAIC EM PE JOAO BRUNO",
-          31037231: "EM PROFESSORA HERMINIA CORGOZINHO",
-          31037401: "EM EMILIO RIBAS",
-          31322679: "EM JOSE QUINTINO LOPES",
-          31033341: "EE PROFESSOR CHICO DIAS",
-          31033219: "EE JOVELINO RABELO",
-          31033294: "EE PATRONATO BOM PASTOR",
-          31220060: "EM DR SEBASTIAO GOMES GUIMARAES",
-          31033057: "EE ROSA VAZ DE ARAUJO",
-          31313653: "EM ANTONIETA FONSECA",
-          31033022: "EE ANTONIO OLIMPIO DE MORAIS",
-          31033278: "EE NOSSA SENHORA DO SAGRADO",
-          31033260: "EE MONSENHOR DOMINGOS",
-          31320391: "EM PROFA EVELINA GRECO SANTOS",
-          31033031: "EE SANTO TOMAZ DE AQUINO",
-          31033154: "EE DONA ANTONIA VALADARES",
-          31037303: "EM ANTONIO PIO DA SILVA",
-          31223905: "EM SIDNEY JOSE DE OLIVEIRA",
-          31277649: "EM PROFESSOR PAULO FREIRE",
-          31037397: "EM DONA MARIA ROSA",
-          31223891: "EM JOAO SEVERINO DE AZEVEDO",
-          31348490: "EM JOSE CARLOS PEREIRA",
-          31037338: "EM SAO JOSE",
-          31037290: "EM SAO GERALDO",
-          31268631:
-            "CENTRO FEDERAL DE EDUCACAO TECNOLOGICA DE MINAS GERAIS - CAMPUS DIVINOPOLIS",
-          31227102: "EM JOAO GONTIJO DA FONSECA",
-          31037320: "EM BENJAMIN CONSTANT",
-          31037460: "EM JOAQUIM RODRIGUES",
-          31033308: "EM PROF DARCY RIBEIRO",
-          31037532: "EM ORIBES BATISTA LEITE",
-          31037222: "CENTRO TECNICO PEDAGOGICO",
-          31033103: "EE CEL JOSE MENDES MOURAO",
-        };
-
-        fetch("dataset.json")
-          .then((response) => response.json())
-          .then((data) => {
-            // Adicionar opções de anos ao elemento de seleção
-            const anos = obterAnosDisponiveis(data);
-            anos.forEach((ano) => {
-              const optionElement = document.createElement("option");
-              optionElement.value = ano;
-              optionElement.innerText = ano;
-              anoSelect.appendChild(optionElement);
-            });
-
-            document
-              .getElementById("buscar-btn")
-              .addEventListener("click", function () {
-                const uf = ufSelect.value;
-                const municipio = municipioSelect.value;
-                const idEscola = idEscolaInput.value;
-                const selectedAno = anoSelect.value;
-                renderData(
-                  data,
-                  uf,
-                  municipio,
-                  idEscola,
-                  selectedAno,
-                  idToNomeEscola
-                );
-              });
-          })
-          .catch((error) => console.error("Erro ao carregar dados:", error));
-
-        function obterAnosDisponiveis(data) {
-          const anos = new Set();
-          data.forEach((escola) => {
-            anos.add(escola.ano);
-          });
-          return Array.from(anos);
-        }
-
-        function renderData(
-          data,
-          uf,
-          municipio,
-          idEscola,
-          selectedAno,
-          idToNomeEscola
-        ) {
-          const appElement = document.getElementById("app");
-          appElement.innerHTML = "";
-
-          const escolasFiltradas = data.filter(
-            (escola) =>
-              (uf === "" || escola.sigla_uf === uf) &&
-              (municipio === "" || escola.id_municipio === municipio) &&
-              (idEscola === "" || escola.id_escola === idEscola) &&
-              (selectedAno === "" || escola.ano === selectedAno)
-          );
-
-          if (escolasFiltradas.length > 0) {
-            escolasFiltradas.forEach((escola) => {
-              const nomeEscola =
-                idToNomeEscola[escola.id_escola] ||
-                "Nome da escola não encontrado";
-
-              const nomeEscolaElement = document.createElement("h3");
-              nomeEscolaElement.classList.add("text-xl", "font-bold", "mb-2");
-              nomeEscolaElement.innerText = nomeEscola;
-
-              const escolaDiv = document.createElement("div");
-              escolaDiv.classList.add(
-                "bg-white",
-                "rounded",
-                "p-4",
-                "mb-4",
-                "shadow-md"
-              );
-
-              renderField(
-                escolaDiv,
-                escola,
-                "taxa_aprovacao",
-                "Taxa de Aprovação"
-              );
-              renderField(
-                escolaDiv,
-                escola,
-                "indicador_rendimento",
-                "Indicador de Rendimento"
-              );
-              renderField(
-                escolaDiv,
-                escola,
-                "nota_saeb_matematica",
-                "Nota Saeb Matemática"
-              );
-              renderField(
-                escolaDiv,
-                escola,
-                "nota_saeb_lingua_portuguesa",
-                "Nota Saeb Língua Portuguesa"
-              );
-              renderField(
-                escolaDiv,
-                escola,
-                "nota_saeb_media_padronizada",
-                "Nota Saeb Média Padronizada"
-              );
-              renderField(escolaDiv, escola, "ideb", "IDEB");
-              renderField(escolaDiv, escola, "projecao", "Projeção");
-
-              appElement.appendChild(nomeEscolaElement);
-              appElement.appendChild(escolaDiv);
-            });
-          } else {
-            const erroDiv = document.createElement("div");
-            erroDiv.classList.add(
-              "bg-red-500",
-              "text-white",
-              "p-4",
-              "rounded",
-              "mb-4"
-            );
-            erroDiv.innerText =
-              "Nenhuma escola encontrada com os filtros fornecidos.";
-
-            appElement.appendChild(erroDiv);
-          }
-
-          // Função auxiliar para verificar se o valor é nulo
-          function isNull(value) {
-            return value === null || value === undefined;
-          }
-
-          // Função auxiliar para destacar a escola
-          function renderField(escolaDiv, escola, campo, label) {
-            const value = escola[campo];
-            const valueElement = document.createElement("p");
-
-            if (
-              !isNull(value) &&
-              isMaxValue(escolasFiltradas, campo, value, escola)
-            ) {
-              valueElement.innerHTML = `<strong>${label}:</strong> <span class="destaque">${value}</span>`;
-            } else {
-              valueElement.innerHTML = `<strong>${label}:</strong> ${value}`;
-            }
-
-            escolaDiv.appendChild(valueElement);
-          }
-
-          // Função auxiliar para verificar se o valor é o máximo para um determinado critério
-          function isMaxValue(escolas, campo, value, escolaAtual) {
-            const maxValue = Math.max(
-              ...escolas
-                .filter((escola) => !isNull(escola[campo]))
-                .map((escola) => parseFloat(escola[campo]) || 0)
-            );
-
-            return (
-              parseFloat(value) === parseFloat(escolaAtual[campo]) &&
-              parseFloat(value) === maxValue
-            );
-          }
-        }
-      });
+      function redirecionar() {
+        window.location.href = "index.html";
+      }
     </script>
   </body>
 </html>
